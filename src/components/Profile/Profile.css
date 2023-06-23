@@ -1,0 +1,121 @@
+.profile {
+  margin: 74px auto 70px;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media screen and (max-width: 768px) {
+  .profile {
+    margin: 236px auto 269px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile {
+    margin: 70px auto 40px;
+  }
+}
+
+.profile__title {
+  margin: 0;
+  text-align: center;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+}
+
+.profile__form {
+  margin-top: 123px;
+  width: 410px;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 768px) {
+  .profile__form {
+    width: 260px;
+    margin-top: 96px;
+  }
+}
+@media screen and (max-width: 500px) {
+  .profile__form {
+    margin-top: 80px;
+    width: 260px;
+  }
+}
+
+.profile__container-name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+.profile__container-email {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 17px;
+}
+
+.profile__label {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: #000000;
+}
+
+.profile__input {
+  font-size: 11px;
+  line-height: 13px;
+  text-align: end;
+  border: none;
+  outline: none;
+}
+
+.profile__btn-edit {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  margin-top: 220px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px) {
+  .profile__btn-edit {
+    margin-top: 210px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .profile__btn-edit {
+    margin-top: 379px;
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.profile__btn-logout {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  margin-top: 16px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: #ee3465;
+}
+@media screen and (max-width: 320px) {
+  .profile__btn-logout {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
