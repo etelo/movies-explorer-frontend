@@ -78,7 +78,9 @@
 }
 
 .techs__subtitle {
-  margin: 26px 410px 0;
+  border: 1px solid red;
+  width: 460px;
+  margin: 26px auto 0;
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -89,14 +91,15 @@
 }
 @media (max-width: 768px) {
   .techs__subtitle {
-    margin: 22px 154px 0;
+    margin-top: 22px;
     font-size: 12px;
     line-height: 18px;
   }
 }
-@media (max-width: 500px) {
+@media (max-width: 550px) {
   .techs__subtitle {
-    margin: 24px 14px 0;
+    max-width: calc(100% - 14px*2);
+    margin-top: 24px;
     font-size: 11px;
     line-height: 16px;
   }

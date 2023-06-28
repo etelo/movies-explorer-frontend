@@ -10,8 +10,8 @@ function SearchForm() {
         <form className="searchform__form">
           <div className="searchform__search-box">
             <img className="searchform__img-search" src={search} alt="Иконка поиска" />
-            <input className="searchform__input" type="text" placeholder="Фильм" required></input>
-            <button className="searchform__button" type="button"></button>
+            <input className="searchform__input" minLength={2} maxLength={30} type="text" placeholder="Фильм" required></input>
+            <button className="searchform__submit" type="submit"></button> 
           </div>
 
           <div className="searchform__short-box">
