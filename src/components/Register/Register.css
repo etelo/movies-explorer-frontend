@@ -1,0 +1,155 @@
+.reg {
+  display: flex;
+  flex-direction: column;
+  width: 396px;
+  margin: 70px auto;
+}
+@media screen and (max-width: 768px) {
+  .reg {
+    margin: 232px auto;
+  }
+}
+@media screen and (max-width: 400px) {
+  .reg {
+    width: 260px;
+    margin: 56px auto 30px;
+  }
+}
+
+.reg__title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin-top: 40px;
+}
+@media screen and (max-width: 320px) {
+  .reg__title {
+    text-align: center;
+    margin-top: 50px;
+  }
+}
+
+.reg__form {
+  /* width: 100%; */
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+}
+@media screen and (max-width: 320px) {
+  .reg__form {
+    margin-top: 80px;
+  }
+}
+
+.reg__input-label {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #a0a0a0;
+  margin-top: 24px;
+}
+.reg__input-label:first-of-type {
+  margin-top: 0;
+}
+
+.reg__input {
+  margin-top: 5px;
+  padding: 0;
+  border: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8e8e8;
+  outline: none;
+}
+.reg__input::placeholder {
+  color: #000000;
+}
+.reg__input:focus {
+  border-bottom: 1px solid #2be080;
+}
+
+.reg__input_err {
+  color: #ee3465;
+}
+
+.reg__err {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #ee3465;
+  margin-top: 6px;
+  margin-bottom: 65px;
+}
+
+.reg__btn-submit {
+  background: #2be080;
+  border-radius: 3px;
+  border: none;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 15px;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.reg__btn-submit:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.5s;
+}
+
+.reg__signin-text {
+  margin: 0;
+  padding: 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #a0a0a0;
+}
+@media screen and (max-width: 320px) {
+  .reg__signin-text {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
+.reg__signin {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 6px;
+}
+
+.reg__signin-link {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #2be080;
+  text-decoration: none;
+}
+@media screen and (max-width: 320px) {
+  .reg__signin-link {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+.reg__signin-link:hover {
+  cursor: pointer;
+  opacity: 0.8;
+  transition: 0.5s;
+}
