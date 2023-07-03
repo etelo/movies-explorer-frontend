@@ -69,8 +69,17 @@
   background: #e8e8e8;
   display: flex;
   justify-content: center;
-  gap: 10px;
+  align-items: center;
   border-radius: 10px;
+  border: none;
+
+  text-decoration: none;
+  
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
 }
 @media (max-width: 768px) {
   .promo__button {
@@ -82,6 +91,7 @@
     margin-top: 212px;
     width: 82px;
     height: 26px;
+    font-size: 10px;
   }
 }
 
@@ -91,19 +101,14 @@
   transition: 0.5s;
 }
 
-.promo__navtext {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 16px;
+/* .promo__navtext {
+
   text-align: center;
+  text-decoration: none;
   display: flex;
   align-items: center;
-  text-decoration: none;
-  color: #000000;
 }
 @media (max-width: 320px) {
   .promo__navtext {
-    font-size: 10px;
   }
-}
+} */

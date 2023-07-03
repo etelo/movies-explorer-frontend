@@ -39,30 +39,4 @@
   }
 }
 
-.cards__still {
-  font-weight: 500;
-  font-size: 12px;
-  line-height: 15px;
-  display: flex;
-  align-items: center;
-  text-align: center;
-  color: #000000;
-  padding: 0;
-  height: 36px;
-  width: 320px;
-  margin: 50px auto 80px;
-  background: #ffffff;
-  border: 1px solid #e8e8e8;
-  border-radius: 5px;
-  display: block;
-}
-@media screen and (max-width: 320px) {
-  .cards__still {
-    width: 240px;
-  }
-}
-.cards__still:hover {
-  cursor: pointer;
-  opacity: 0.8;
-  transition: 0.5s;
-}
+

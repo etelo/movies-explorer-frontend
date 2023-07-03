@@ -5,14 +5,15 @@ import AboutMe from "./AboutMe/AboutMe";
 import Techs from "./Techs/Techs";
 import Portfolio from "./Portfolio/Portfolio";
 import "./Main.css";
+import { Route } from "react-router-dom";
 
 function Main() {
   return (
     <main className="content">
       <Promo />
-      <AboutProject />
-      <Techs />
-      <AboutMe />
+      <AboutProject id="aboutproject" />
+      <Techs id="techs" />
+      <AboutMe id="aboutme" />
       <Portfolio />
     </main>
   );

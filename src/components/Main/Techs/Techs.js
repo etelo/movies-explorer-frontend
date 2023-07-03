@@ -12,13 +12,76 @@ function Techs() {
       </p>
 
       <ul className="techs__buttons">
-        <li className="techs__button">HTML</li>
-        <li className="techs__button">CSS</li>
-        <li className="techs__button">JS</li>
-        <li className="techs__button">React</li>
-        <li className="techs__button">Git</li>
-        <li className="techs__button">Express.js</li>
-        <li className="techs__button">MongoDB</li>
+        <li className="techs__button">
+          <a
+            className="techs__link"
+            href="https://developer.mozilla.org/en-US/docs/Web/HTML"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            HTML
+          </a>
+        </li>
+        <li className="techs__button">
+          <a
+            className="techs__link"
+            href="https://developer.mozilla.org/en-US/docs/Web/CSS"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            CSS
+          </a>
+        </li>
+        <li className="techs__button">
+          <a
+            className="techs__link"
+            href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            JS
+          </a>
+        </li>
+        <li className="techs__button">
+          <a
+            className="techs__link"
+            href="https://reactjs.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            React
+          </a>
+        </li>
+        <li className="techs__button">
+          <a
+            className="techs__link"
+            href="https://git-scm.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Git
+          </a>
+        </li>
+        <li className="techs__button">
+          <a
+            className="techs__link"
+            href="https://expressjs.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Express.js
+          </a>
+        </li>
+        <li className="techs__button">
+          <a
+            className="techs__link"
+            href="https://www.mongodb.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            MongoDB
+          </a>
+        </li>
       </ul>
     </section>
   );

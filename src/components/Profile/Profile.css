@@ -47,6 +47,7 @@
 }
 
 .profile__container-name {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -100,6 +101,10 @@
     line-height: 15px;
   }
 }
+.profile__btn-edit:disabled {
+  font-style: oblique;
+  color: #bbbbbb;
+}
 
 .profile__btn-logout {
   font-style: normal;
@@ -118,4 +123,30 @@
     font-size: 12px;
     line-height: 15px;
   }
+}
+
+.profile__error-update {
+  margin: 20px auto 0;
+  display: flex;
+  align-items: center;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: #ee3465;
+}
+
+.profile__input_error {
+  color: #ee3465;
+}
+
+.profile__error-valid{
+  margin-top: 30px;
+  margin-left: auto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  line-height: 13px;
+  color: #ee3465;
 }

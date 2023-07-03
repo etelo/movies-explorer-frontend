@@ -15,6 +15,23 @@
   }
 }
 
+.search-form__error{
+  display: flex;
+  justify-content: center;
+  margin: 20px auto 0;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  color: rgb(230, 74, 74);
+}
+@media screen and (max-width: 700px) {
+  .search-form__error {
+    margin-top: 5px;
+  }
+}
+
 .searchform__form {
   height: 72px;
   /* padding-bottom: 72px; */
