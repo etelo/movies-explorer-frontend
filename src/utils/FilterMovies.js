@@ -1,3 +1,5 @@
+import { DURATION_SHORTMOVIES } from "../utils/constants"
+
 export function filterMovies(movies, query, duration) {
   const queryLower = query.toLowerCase().trim();
 
@@ -8,7 +10,7 @@ export function filterMovies(movies, query, duration) {
     const movieInfo = [nameRU, nameEN].join(' ').toLowerCase();
 
     if (duration) {
-      return movieInfo.includes(queryLower) && movieDuration <= 40;
+      return movieInfo.includes(queryLower) && movieDuration <= DURATION_SHORTMOVIES;
     } else {
       return movieInfo.includes(queryLower);
     }

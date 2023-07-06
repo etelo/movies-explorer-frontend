@@ -3,6 +3,14 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./Movies.css";
 import React, { useEffect, useState } from "react";
 import Preloader from "../Preloader/Preloader";
+import {
+  VIDEOS_COUNT_PHONE, VIDEOS_COUNT_PHONE_ADD,
+  VIDEOS_COUNT_TABLET, VIDEOS_COUNT_TABLET_ADD,
+  VIDEOS_COUNT_LAPTOP, VIDEOS_COUNT_LAPTOP_ADD,
+  DEVICE_WIDTH_LAPTOP,
+  DEVICE_WIDTH_TABLET,
+  DEVICE_WIDTH_PHONE
+} from "../../utils/constants"
 
 function Movies({
   isLoading,
@@ -20,15 +28,15 @@ function Movies({
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;
-      if (windowWidth >= 1280) {
-        setCardsPerPage(12);
-        setCardsPerLoad(3);
-      } else if (windowWidth >= 768) {
-        setCardsPerPage(8);
-        setCardsPerLoad(2);
-      } else if (windowWidth >= 320) {
-        setCardsPerPage(5);
-        setCardsPerLoad(2);
+      if (windowWidth >= DEVICE_WIDTH_LAPTOP) {
+        setCardsPerPage(VIDEOS_COUNT_LAPTOP);
+        setCardsPerLoad(VIDEOS_COUNT_LAPTOP_ADD);
+      } else if (windowWidth >= DEVICE_WIDTH_TABLET) {
+        setCardsPerPage(VIDEOS_COUNT_TABLET);
+        setCardsPerLoad(VIDEOS_COUNT_TABLET_ADD);
+      } else if (windowWidth >= DEVICE_WIDTH_PHONE) {
+        setCardsPerPage(VIDEOS_COUNT_PHONE);
+        setCardsPerLoad(VIDEOS_COUNT_PHONE_ADD);
       }
     };
     let resizeTimeout;
@@ -50,7 +58,7 @@ function Movies({
 
   return (
     <div className="movies">
-      <SearchForm handleSearch={handleSearch}/>
+      <SearchForm handleSearch={handleSearch} />
 
 
       {isLoading ? (

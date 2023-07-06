@@ -1,5 +1,4 @@
-const baseUrl = "https://api.hello2023movies.nomoredomains.rocks";
-const testUrl = "http://localhost:3000//";
+import { API_URL_MAIN } from "../utils/constants"
 
 class MainApi {
   constructor(baseUrl) {
@@ -122,6 +121,6 @@ class MainApi {
   }
 }
 
-const mainApi = new MainApi(baseUrl);
+const mainApi = new MainApi(API_URL_MAIN);
 
 export default mainApi;
