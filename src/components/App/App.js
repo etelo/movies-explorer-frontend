@@ -1,4 +1,4 @@
-import { Switch, Route, useHistory } from "react-router-dom";
+import { Switch, Route, useHistory  } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -15,8 +15,10 @@ import mainApi from "../../utils/MainApi";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { filterMovies } from "../../utils/FilterMovies";
+import { useLocation } from 'react-router-dom';
 
 function App() {
+  const location = useLocation();
   const history = useHistory();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -56,6 +58,8 @@ function App() {
     mainApi
       .signin(email, password)
       .then((res) => {
+        localStorage.clear();
+        
         setIsLoggedIn(true);
         setCurrentUser(res.user);
         localStorage.setItem("token", res.token);
@@ -76,18 +80,35 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // console.log("isLoggedIn: " + isLoggedIn);
-  }, [isLoggedIn]);
+    setIsSearchedSavedMovies(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    const favoriteMovies = loadFromLocalStorage("favoriteMovies");
+    if (favoriteMovies) {
+      setFavoriteMovies(favoriteMovies);
+    }
+
+    const savedSearchMovies = loadFromLocalStorage("savedSearchMovies");
+    if (savedSearchMovies) {
+      setIsSearched(true);
+      setSearchResults(savedSearchMovies);
+    }
+  }, []);
 
   const handleSearch = (keyword, isShortFilm) => {
     setIsLoading(true);
     moviesApi
       .GetMovies()
-      .then((res) => {
-        saveToLocalStorage("savedSearchMovies", res);
+      .then((res) => {        
+        
         const filteredMovies = filterMovies(res, keyword, isShortFilm);
+        saveToLocalStorage("savedSearchMovies", filteredMovies);
         setSearchResults(filteredMovies);
         setIsSearched(true);
+
+        // console.log("saved search movies:");
+        // console.log();
       })
       .catch((err) => {
         setError(true);
@@ -100,7 +121,6 @@ function App() {
 
   const handleSearchSavedMovies = (keyword, isShortFilm) => {
     const token = localStorage.getItem("token");
-
     setIsLoading(true);
     mainApi
       .getSavedMovies(token)
@@ -118,13 +138,7 @@ function App() {
       });
   };
 
-  useEffect(() => {
-    const savedSearchMovies = loadFromLocalStorage("savedSearchMovies");
-    if (savedSearchMovies) {
-      setIsSearched(true);
-      setSearchResults(savedSearchMovies);
-    }
-  }, []);
+
 
 
   function getSavedMoviesOnServer() {
@@ -235,7 +249,15 @@ function App() {
 
   const handleSignOut = () => {
     setIsLoggedIn(false);
-    localStorage.removeItem("token");
+    setCurrentUser(null);
+    setSearchResults([]);
+    setIsSearched(false);
+    setFavoriteMovies([]);
+    setResulBySerchSaveMovies([]);
+    setIsSearchedSavedMovies(false);
+
+    setIsLoggedIn(false);
+    localStorage.clear();
     history.push("/");
   };
 

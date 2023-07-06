@@ -4,7 +4,19 @@ import "./SavedMovies.css";
 import React, { useEffect, useState } from "react";
 import Preloader from "../Preloader/Preloader";
 
-function SavedMovies({ resulBySerchSaveMovies, isSearchedSavedMovies, isLoading, handleSearch, favoriteMovies, errSavedMovies, handleFavoriteClick }) {
+function SavedMovies({
+  resulBySerchSaveMovies,
+  isSearchedSavedMovies,
+  isLoading,
+  handleSearch,
+  favoriteMovies,
+  errSavedMovies,
+  handleFavoriteClick }) {
+
+    console.log("isSearchedSavedMovies");
+    console.log(isSearchedSavedMovies);
+
+
 
   return (
     <div className="movies">

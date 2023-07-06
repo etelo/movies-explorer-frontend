@@ -17,8 +17,6 @@ function Movies({
   const [cardsPerPage, setCardsPerPage] = useState(12);
   const [cardsPerLoad, setCardsPerLoad] = useState(3);
 
-
-
   useEffect(() => {
     const handleResize = () => {
       const windowWidth = window.innerWidth;

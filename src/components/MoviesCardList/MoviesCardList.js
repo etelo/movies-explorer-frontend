@@ -7,7 +7,7 @@ function MoviesCardList({ isSaved, movies, handleFavoriteClick, favoriteMovies, 
       <ul className="cards__list">
         {movies.map((movie) => (
           <MoviesCard
-            key={isSaved? movie.movieId : movie.id}
+            key={isSaved ? movie.movieId : movie.id}
             movie={movie}
             handleFavoriteClick={handleFavoriteClick}
             favoriteMovies={favoriteMovies}

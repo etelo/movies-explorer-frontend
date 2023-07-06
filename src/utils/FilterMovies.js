@@ -10,7 +10,7 @@ export function filterMovies(movies, query, duration) {
     if (duration) {
       return movieInfo.includes(queryLower) && movieDuration <= 40;
     } else {
-      return movieInfo.includes(queryLower) && movieDuration > 40;
+      return movieInfo.includes(queryLower);
     }
   });
 

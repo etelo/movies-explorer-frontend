@@ -1,34 +1,44 @@
 import search from "../../images/Search.svg";
 import "./SearchForm.css";
 import React, { useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 function SearchForm({ handleSearch, handleFilter }) {
   const [keyword, setKeyword] = useState("");
   const [error, setError] = useState(false);
   const [isShortFilm, setIsShortFilm] = useState(false);
 
+  const location = useLocation();
+  const pathName = location.pathname;
+
   useEffect(() => {
-    const savedKeyword = localStorage.getItem("searchKeyword");
-    const savedIsShortFilm = localStorage.getItem("isShortFilm");
-    if (savedKeyword) {
-      setKeyword(savedKeyword);
-    }
-    if (savedIsShortFilm) {
-      setIsShortFilm(savedIsShortFilm === "true");
+    if (pathName === "/movies") {
+      const savedKeyword = localStorage.getItem("searchKeyword");
+      const savedIsShortFilm = localStorage.getItem("isShortFilm");
+      if (savedKeyword) {
+        setKeyword(savedKeyword);
+      }
+      if (savedIsShortFilm) {
+        setIsShortFilm(savedIsShortFilm === "true");
+      }
     }
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (keyword.trim() === "") {
       setError(true);
     } else {
       setError(false);
       handleSearch(keyword, isShortFilm);
-      
-      localStorage.setItem("searchKeyword", keyword);
-      localStorage.setItem("isShortFilm", isShortFilm.toString());
+
+      if (pathName === "/movies") {
+        localStorage.setItem("searchKeyword", keyword);
+        localStorage.setItem("isShortFilm", isShortFilm.toString());
+      }
     }
+
   };
 
   return (
