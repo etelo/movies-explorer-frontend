@@ -129,11 +129,13 @@
   margin: 20px auto 0;
   display: flex;
   align-items: center;
-
   font-style: normal;
   font-weight: 500;
   font-size: 11px;
   line-height: 13px;
+  color: #000000;
+}
+.profile__error-update_black{
   color: #ee3465;
 }
 

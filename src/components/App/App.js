@@ -1,4 +1,4 @@
-import { Switch, Route, useHistory  } from "react-router-dom";
+import { Switch, Route, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
@@ -23,7 +23,6 @@ function App() {
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [currentUser, setCurrentUser] = useState(null);
 
   const [searchResults, setSearchResults] = useState([]);
   const [error, setError] = useState(false);
@@ -35,6 +34,10 @@ function App() {
 
   const [resulBySerchSaveMovies, setResulBySerchSaveMovies] = useState([]);
   const [isSearchedSavedMovies, setIsSearchedSavedMovies] = useState(false);
+
+  const [currentUser, setCurrentUser] = useState({});
+
+  const [responsProfileChange, setResponsProfileChange] = useState({ text: "", isError: false });
 
   // Register
   const [errorMessageRegister, setErrorMessageRegister] = useState("");
@@ -59,9 +62,7 @@ function App() {
       .signin(email, password)
       .then((res) => {
         localStorage.clear();
-        
         setIsLoggedIn(true);
-        setCurrentUser(res.user);
         localStorage.setItem("token", res.token);
         history.push("/movies");
         getSavedMoviesOnServer();
@@ -100,8 +101,8 @@ function App() {
     setIsLoading(true);
     moviesApi
       .GetMovies()
-      .then((res) => {        
-        
+      .then((res) => {
+
         const filteredMovies = filterMovies(res, keyword, isShortFilm);
         saveToLocalStorage("savedSearchMovies", filteredMovies);
         setSearchResults(filteredMovies);
@@ -138,7 +139,41 @@ function App() {
       });
   };
 
+  function handleProfileChange(name, email) {
+    const token = localStorage.getItem("token");
+    if (token) {
+      mainApi
+        .updateUserInfo(token, name, email)
+        .then((updatedUser) => {
+          setCurrentUser(updatedUser);
+          setResponsProfileChange({ text: "Данные обновлены", isError: false });
+        })
+        .catch((err) => {
+          setResponsProfileChange({ text: err.message, isError: true });
+          console.log(err.message);
+        });
+    }
+  }
 
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setIsLoading(true);
+      mainApi
+        .getUserInfo(token)
+        .then(data => {
+          if (data) {
+            setCurrentUser(data);
+          }
+        })
+        .catch(err => {
+          console.log("erro: " + err)
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [isLoggedIn]);
 
 
   function getSavedMoviesOnServer() {
@@ -196,6 +231,7 @@ function App() {
 
     const savedMovie = favoriteMovies.find(
       (savedMovie) => savedMovie.movieId === movie.id);
+
     if (savedMovie) {
       setIsLoading(true);
       mainApi
@@ -208,7 +244,6 @@ function App() {
           console.log(updatedFavoriteMovies);
           setFavoriteMovies(updatedFavoriteMovies);
           saveToLocalStorage("favoriteMovies", updatedFavoriteMovies);
-
         })
         .catch((err) => {
           console.log("err unSaveMovie : " + err);
@@ -310,7 +345,10 @@ function App() {
             <ProtectedRoute path="/profile"
               isLoggedIn={isLoggedIn}
               component={Profile}
-              handleSignOut={handleSignOut} />
+              handleSignOut={handleSignOut}
+              handleProfileChange={handleProfileChange}
+              responsProfileChange={responsProfileChange}
+            />
           </Route>
 
           <Route exact path="/signup">

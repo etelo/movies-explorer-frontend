@@ -1,54 +1,48 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./Profile.css";
 import { useFormWithValidation } from "../../hook/useFormWithValidation";
 import mainApi from "../../utils/MainApi";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function Profile({ handleSignOut }) {
-  const [updateError, setUpdateError] = useState("");
+function Profile({ handleSignOut, handleProfileChange, responsProfileChange }) {
   const [errorField, setErrorField] = useState("");
+  const [seeError, setSeeError] = useState(false);
+
+  const currentUser = useContext(CurrentUserContext);
 
   const { values, handleChange, errors, isValid, resetForm } = useFormWithValidation();
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-
-    mainApi
-      .getUserInfo(token)
-      .then((userInfo) => {
-        resetForm(userInfo);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    if (token) {
+      mainApi
+        .getUserInfo(token)
+        .then((userInfo) => {
+          resetForm(userInfo);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   }, [resetForm]);
 
   const handleUpdateClick = (e) => {
-    const token = localStorage.getItem("token");
-
-
     e.preventDefault();
-    if (isValid) {
-      const { name, email } = values;
-      mainApi
-        .updateUserInfo(token, name, email)
-        .then(() => {
-        })
-        .catch((err) => {
-          setUpdateError(err.message);
-          console.log(err.message);
-        });
+    if (currentUser.name !== values.name || currentUser.email !== values.email) {
+      handleProfileChange(values.name, values.email);
+      setSeeError(true);
     }
   };
 
   const handleInputChange = (e) => {
     handleChange(e);
-    setUpdateError("");
     setErrorField(e.target.name);
+    setSeeError(false);
   };
 
   return (
     <section className="profile">
-      <h1 className="profile__title">Привет, Виталий!</h1>
+      <h1 className="profile__title">{`Привет, ${currentUser.name ? currentUser.name : ""}!`}</h1>
       <form className="profile__form">
         <div className="profile__container-name">
           <label className={`profile__label ${errors.name && "profile__input_error"}`}>Имя</label>
@@ -76,15 +70,16 @@ function Profile({ handleSignOut }) {
         </div>
         {(errors.email || errors.name) && (
           <span className="profile__error-valid">
-            {errorField === "name" && errors.name} 
+            {errorField === "name" && errors.name}
             {errorField === "email" && errors.email}
           </span>
         )}
-        {updateError && <span className="profile__error-update">{updateError}</span>}
+        {responsProfileChange.text &&
+          <span className={`profile__error-update ${responsProfileChange.isError && "profile__error-update_black"}`}>{seeError && responsProfileChange.text}</span>}
         <button
           className="profile__btn-edit"
           type="button"
-          disabled={!isValid}
+          disabled={!isValid || (values.name === currentUser.name && values.email === currentUser.email)}
           onClick={handleUpdateClick}>
           Редактировать
         </button>
