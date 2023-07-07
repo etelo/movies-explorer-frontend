@@ -204,8 +204,6 @@ function App() {
 
   const handleDeleteSavedClick = (movie) => {
     const token = localStorage.getItem("token");
-
-    setIsLoading(true);
     mainApi
       .unSaveMovie(token, movie._id)
       .then((newMovie) => {
@@ -222,7 +220,6 @@ function App() {
       .catch((err) => {
         console.log("err unSaveMovie : " + err);
       })
-      .finally(() => setIsLoading(false));
   }
 
 
@@ -233,14 +230,14 @@ function App() {
       (savedMovie) => savedMovie.movieId === movie.id);
 
     if (savedMovie) {
-      setIsLoading(true);
+      // setIsLoading(true);
       mainApi
         .unSaveMovie(token, savedMovie._id)
         .then((newMovie) => {
           const updatedFavoriteMovies = favoriteMovies.filter((item) => {
             return item.movieId !== movie.id;
           });
-          setFavoriteMovies(updatedFavoriteMovies);        
+          setFavoriteMovies(updatedFavoriteMovies);
           saveToLocalStorage("favoriteMovies", updatedFavoriteMovies);
           // console.log("handleFavoriteClick updatedFavoriteMovies: ");
           // console.log(updatedFavoriteMovies);
@@ -248,9 +245,9 @@ function App() {
         .catch((err) => {
           console.log("err unSaveMovie : " + err);
         })
-        .finally(() => setIsLoading(false));
+        // .finally(() => setIsLoading(false));
     } else {
-      setIsLoading(true);
+      // setIsLoading(true);
       mainApi
         .saveMovie(token, movie)
         .then((newMovie) => {
@@ -269,7 +266,7 @@ function App() {
         .catch((err) => {
           console.log(err);
         })
-        .finally(() => setIsLoading(false));
+        // .finally(() => setIsLoading(false));
     }
   };
 
