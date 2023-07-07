@@ -17,7 +17,7 @@ function Footer() {
         >
           Яндекс.Практикум
         </a>
-        <a className="footer__git-link" href="https://github.com/" target="_blank" rel="noreferrer">
+        <a className="footer__git-link" href="https://github.com/etelo" target="_blank" rel="noreferrer">
           Github
         </a>
       </div>

@@ -171,3 +171,10 @@
 .header__nav-button-img {
   background-color: #ffffff;
 }
+
+.active-link {
+  text-decoration: underline;
+  /* font-size: 14px; */
+  /* line-height: 18px; */
+  /* font-weight: 900; */
+}

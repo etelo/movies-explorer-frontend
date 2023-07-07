@@ -46,6 +46,9 @@
   background-color: transparent;
   margin-left: auto;
 }
+.movie__button:hover {
+  cursor: pointer;
+}
 
 .movie__button_favorite-active {
   background-image: url("../../images/saveOn.svg");

@@ -1,15 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Header.css";
 import Logo from "../Logo/Logo";
 import MenuIcon from "../../images/Menu.svg";
 import Navigation from "../Navigation/Navigation";
+import { useLocation, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function Header({ isLoggedIn }) {
+  const [activeLink, setActiveLink] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+
+  const location = useLocation();
 
   function handleMenuClick() {
     setIsOpen(!isOpen);
   }
+
+  useEffect(() => {
+    if (location.pathname.includes("/movies")) {
+      setActiveLink("movies");
+    } else if (location.pathname.includes("/saved-movies")) {
+      setActiveLink("saved-movies");
+    } else {
+      setActiveLink("");
+    }
+  }, [location]);
 
   return (
     <header className="header">
@@ -17,17 +32,25 @@ function Header({ isLoggedIn }) {
       {isLoggedIn ? (
         <>
           <div className="header__movies-container">
-            <a className="header__movies" href="/movies">
+            <Link 
+              className={`header__movies ${activeLink === "movies" ? "active-link" : ""}`}
+              to="/movies"
+            >
               Фильмы
-            </a>
-            <a className="header__saved-movies" href="/saved-movies">
+            </Link >
+            <Link 
+              className={`header__saved-movies ${
+                activeLink === "saved-movies" ? "active-link" : ""
+              }`}
+              to="/saved-movies"
+            >
               Сохраненные Фильмы
-            </a>
+            </Link >
           </div>
 
-          <a className="header__account" href="/profile">
+          <Link  className="header__account" to="/profile">
             Аккаунт
-          </a>
+          </Link >
           <button className="header__nav-button" onClick={handleMenuClick}>
             <img className="header__nav-button-img" alt="Навигация" src={MenuIcon} />
           </button>
@@ -35,12 +58,12 @@ function Header({ isLoggedIn }) {
         </>
       ) : (
         <div className="header__auth">
-          <a href="/signup" className="header__singup">
+          <Link  to="/signup" className="header__singup">
             Регистрация
-          </a>
-          <a href="/signin" className="header__singin">
+          </Link >
+          <Link  to="/signin" className="header__singin">
             Войти
-          </a>
+          </Link >
         </div>
       )}
     </header>
