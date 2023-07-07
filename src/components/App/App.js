@@ -240,10 +240,10 @@ function App() {
           const updatedFavoriteMovies = favoriteMovies.filter((item) => {
             return item.movieId !== movie.id;
           });
-          console.log("handleFavoriteClick updatedFavoriteMovies: ");
-          console.log(updatedFavoriteMovies);
-          setFavoriteMovies(updatedFavoriteMovies);
+          setFavoriteMovies(updatedFavoriteMovies);        
           saveToLocalStorage("favoriteMovies", updatedFavoriteMovies);
+          // console.log("handleFavoriteClick updatedFavoriteMovies: ");
+          // console.log(updatedFavoriteMovies);
         })
         .catch((err) => {
           console.log("err unSaveMovie : " + err);

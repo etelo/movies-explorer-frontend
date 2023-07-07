@@ -13,11 +13,6 @@ function SavedMovies({
   errSavedMovies,
   handleFavoriteClick }) {
 
-    console.log("isSearchedSavedMovies");
-    console.log(isSearchedSavedMovies);
-
-
-
   return (
     <div className="movies">
       <SearchForm handleSearch={handleSearch} />

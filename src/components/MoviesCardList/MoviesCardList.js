@@ -2,6 +2,7 @@ import MoviesCard from "../MovieCard/MovieCard";
 import "./MoviesCardList.css";
 
 function MoviesCardList({ isSaved, movies, handleFavoriteClick, favoriteMovies, handleDeleteSavedClick }) {
+  
   return (
     <div className="cards">
       <ul className="cards__list">
